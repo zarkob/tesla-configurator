@@ -7,7 +7,6 @@ import {CarConfiguratorComponent} from "./car-configurator/car-configurator.comp
   standalone: true,
   imports: [AsyncPipe, JsonPipe, CarConfiguratorComponent],
   template: `
-    <h1>Hello from {{ name }}!</h1>
     <app-car-configurator></app-car-configurator>
   `,
 })
