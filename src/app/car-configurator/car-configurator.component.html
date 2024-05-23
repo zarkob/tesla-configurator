@@ -1,8 +1,5 @@
-<div class="steps">
-  <button id="step1" routerLink="/step1">Step 1</button>
-  <button id="step2" [disabled]="!selectedModel || !selectedColor" routerLink="/step2">Step 2</button>
-  <button id="step3" [disabled]="!selectedModel || !selectedColor" routerLink="/step3">Step 3</button>
-</div>
+<app-steps [canProceed]="selectedModel && selectedColor"></app-steps>
+
 
 <div>
   <h2>Step 1: Choose your Model and color</h2>

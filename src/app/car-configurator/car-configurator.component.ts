@@ -3,6 +3,7 @@ import {ApiClientService} from "../api-client.service";
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {CarColor, CarModel} from "../shared/interfaces";
+import {StepsComponent} from "../steps/steps.component";
 
 @Component({
   selector: 'app-car-configurator',
@@ -11,7 +12,8 @@ import {CarColor, CarModel} from "../shared/interfaces";
     FormsModule,
     NgIf,
     NgOptimizedImage,
-    NgForOf
+    NgForOf,
+    StepsComponent
   ],
   templateUrl: './car-configurator.component.html',
   styleUrl: './car-configurator.component.scss'
