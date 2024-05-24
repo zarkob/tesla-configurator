@@ -1,16 +1,17 @@
 <div class="selectors">
   <div class="selector">
     <label for="modelSelect">Model:</label>
-    <select id="modelSelect" [(ngModel)]="selectedModel" (change)="onModelChange()">
-      <option value="undefined" disabled>Choose...</option>
-      <option *ngFor="let model of models" [ngValue]="model">{{ model.description }}</option>
+    <select id="modelSelect" [ngModel]="selectedModel" (ngModelChange)="onModelChange($event)">
+      <option [ngValue]="undefined" disabled>Choose...</option>
+      <option *ngFor="let model of models" [ngValue]="model" [selected]="selectedModel == model">{{ model.description }}</option>
     </select>
   </div>
-  <div class="selector" *ngIf="selectedModel">
+  <div class="selector" *ngIf="selectedModel$ | async as selectedModel">
     <label for="colorSelect">Color:</label>
-    <select id="colorSelect" [(ngModel)]="selectedColor" (change)="onColorChange()">
-      <option *ngFor="let color of selectedModel?.colors" [ngValue]="color">{{ color.description }}</option>
+    <select id="colorSelect" [ngModel]="selectedColor$ | async" (ngModelChange)="onColorChange($event)">
+      <option *ngFor="let color of selectedModel.colors" [ngValue]="color">{{ color.description }}</option>
     </select>
   </div>
 </div>
+
 

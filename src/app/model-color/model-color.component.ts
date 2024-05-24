@@ -1,7 +1,10 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CarColor, CarModel} from "../shared/interfaces";
 import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
+import {Observable} from "rxjs";
+import {ApiClientService} from "../api-client.service";
+import {State} from "../shared/state";
 
 @Component({
   selector: 'app-model-color',
@@ -9,27 +12,42 @@ import {NgForOf, NgIf} from "@angular/common";
   imports: [
     FormsModule,
     NgForOf,
-    NgIf
+    NgIf,
+    AsyncPipe
   ],
   templateUrl: './model-color.component.html',
   styleUrl: './model-color.component.scss'
 })
-export class ModelColorComponent {
-  @Input() models: CarModel[] = [];
-  @Input() selectedModel?: CarModel;
-  @Input() selectedColor?: CarColor;
+export class ModelColorComponent implements OnInit {
+  models: CarModel[] = [];
+  selectedModel$: Observable<CarModel | undefined>;
+  selectedColor$: Observable<CarColor | undefined>;
+  selectedModel: CarModel | undefined;
+  selectedColor: CarColor | undefined;
 
-  @Output() modelChange = new EventEmitter<CarModel>();
-  @Output() colorChange = new EventEmitter<CarColor>();
-
-  onModelChange() {
-    this.modelChange.emit(this.selectedModel);
-    this.selectedColor = this.selectedModel?.colors[0];
-    this.colorChange.emit(this.selectedColor);
+  constructor(private apiClientService: ApiClientService, protected state: State) {
+    this.selectedModel$ = this.state.selectedModel$;
+    this.selectedColor$ = this.state.selectedColor$;
   }
 
-  onColorChange() {
-    this.colorChange.emit(this.selectedColor);
+  ngOnInit(): void {
+    this.apiClientService.getModels().subscribe(data => {
+      this.models = data;
+    });
+    this.selectedModel$.subscribe(model => this.selectedModel = model);
+    console.log('SELECTED MODEL IS: ', this.selectedModel);
+    this.selectedColor$.subscribe(color => this.selectedColor = color);
+    console.log('SELECTED COLOR IS: ', this.selectedColor);
+
   }
 
+  onModelChange(model: CarModel): void {
+    this.selectedModel = model;
+    this.state.setSelectedModel(model);
+    this.state.setSelectedColor(model.colors[0]);
+  }
+
+  onColorChange(color: CarColor): void {
+    this.state.setSelectedColor(color);
+  }
 }

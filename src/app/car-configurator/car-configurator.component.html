@@ -1,17 +1,8 @@
-<app-steps [canProceed]="selectedModel && selectedColor"></app-steps>
-
+<app-steps [canProceed]="(state.selectedModel$ | async) && (state.selectedColor$ | async)"></app-steps>
 
 <div>
   <h2>Step 1: Choose your Model and color</h2>
-<app-model-color
-  [models]="models"
-  [selectedModel]="selectedModel"
-  [selectedColor]="selectedColor"
-  (modelChange)="onModelChange($event)"
-  (colorChange)="onColorChange($event)">
-</app-model-color>
-  <div *ngIf="selectedModel && selectedColor">
-    <img [ngSrc]="getImageUrl()" width="1016" height="595" alt="Selected Car" priority/>
-  </div>
+  <app-model-color></app-model-color>
+  <app-car-image></app-car-image>
 </div>
 

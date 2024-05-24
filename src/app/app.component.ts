@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {AsyncPipe, JsonPipe} from '@angular/common';
-import {CarConfiguratorComponent} from "./car-configurator/car-configurator.component";
+import {RouterOutlet} from "@angular/router";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [AsyncPipe, JsonPipe, CarConfiguratorComponent],
+  imports: [AsyncPipe, JsonPipe, RouterOutlet],
   template: `
-    <app-car-configurator></app-car-configurator>
+    <router-outlet></router-outlet>
   `,
 })
 export class AppComponent {
