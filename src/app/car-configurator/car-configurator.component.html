@@ -3,21 +3,13 @@
 
 <div>
   <h2>Step 1: Choose your Model and color</h2>
-  <div class="selectors">
-    <div class="selector">
-      <label for="modelSelect">Model:</label>
-      <select id="modelSelect" [(ngModel)]="selectedModel" (change)="onModelChange()">
-        <option value="undefined" disabled>Choose...</option>
-        <option *ngFor="let model of models" [ngValue]="model">{{ model.description }}</option>
-      </select>
-    </div>
-    <div class="selector" *ngIf="selectedModel">
-      <label for="colorSelect">Color:</label>
-      <select id="colorSelect" [(ngModel)]="selectedColor" (change)="onColorChange()">
-        <option *ngFor="let color of selectedModel?.colors" [ngValue]="color">{{ color.description }}</option>
-      </select>
-    </div>
-  </div>
+<app-model-color
+  [models]="models"
+  [selectedModel]="selectedModel"
+  [selectedColor]="selectedColor"
+  (modelChange)="onModelChange($event)"
+  (colorChange)="onColorChange($event)">
+</app-model-color>
   <div *ngIf="selectedModel && selectedColor">
     <img [ngSrc]="getImageUrl()" width="1016" height="595" alt="Selected Car" priority/>
   </div>

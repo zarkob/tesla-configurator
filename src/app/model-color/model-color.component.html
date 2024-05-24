@@ -1,0 +1,16 @@
+<div class="selectors">
+  <div class="selector">
+    <label for="modelSelect">Model:</label>
+    <select id="modelSelect" [(ngModel)]="selectedModel" (change)="onModelChange()">
+      <option value="undefined" disabled>Choose...</option>
+      <option *ngFor="let model of models" [ngValue]="model">{{ model.description }}</option>
+    </select>
+  </div>
+  <div class="selector" *ngIf="selectedModel">
+    <label for="colorSelect">Color:</label>
+    <select id="colorSelect" [(ngModel)]="selectedColor" (change)="onColorChange()">
+      <option *ngFor="let color of selectedModel?.colors" [ngValue]="color">{{ color.description }}</option>
+    </select>
+  </div>
+</div>
+

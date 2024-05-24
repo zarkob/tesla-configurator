@@ -1,0 +1,19 @@
+.selectors {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.selector {
+  display: flex;
+  margin-right: 10px;
+
+  label {
+    align-content: center;
+  }
+
+  select {
+    flex: 1;
+  }
+}
