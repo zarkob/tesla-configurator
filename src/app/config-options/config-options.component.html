@@ -6,7 +6,7 @@
     <label for="configSelect">Config:</label>
     <select id="configSelect" [(ngModel)]="selectedConfig" (ngModelChange)="onConfigChange($event)">
       <option [ngValue]="undefined" disabled>Choose...</option>
-      <option *ngFor="let config of options?.configs" [ngValue]="config">{{ config.description }}</option>
+      <option *ngFor="let config of state.options?.configs" [ngValue]="config">{{ config.description }}</option>
     </select>
   </div>
   <div>

@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, combineLatest, map, startWith} from "rxjs";
-import {CarColor, CarConfig, CarModel} from "./interfaces";
+import {CarColor, CarConfig, CarModel, CarOptions} from "./interfaces";
+import {ApiClientService} from "../api-client.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class State {
+  models: CarModel[] = [];
+  options: CarOptions | undefined;
   private selectedModelSubject = new BehaviorSubject<CarModel | undefined>(undefined);
   private selectedColorSubject = new BehaviorSubject<CarColor | undefined>(undefined);
   private selectedConfigSubject = new BehaviorSubject<CarConfig | undefined>(undefined);
@@ -18,8 +21,17 @@ export class State {
   towHitch$ = this.towHitchSubject.asObservable();
   yokeSteeringWheel$ = this.yokeSteeringWheelSubject.asObservable();
 
+  constructor(private readonly apiClientService: ApiClientService) {
+    this.apiClientService.getModels().subscribe(data => {
+      this.models = data;
+    });
+  }
+
   setSelectedModel(model: CarModel) {
     this.selectedModelSubject.next(model);
+    this.apiClientService.getOptions(model.code!).subscribe(data => {
+      this.options = data;
+    });
   }
 
   setSelectedColor(color: CarColor) {

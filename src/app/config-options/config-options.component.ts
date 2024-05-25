@@ -22,7 +22,7 @@ import {ApiClientService} from "../api-client.service";
   styleUrl: './config-options.component.scss'
 })
 export class ConfigOptionsComponent implements OnInit{
-  options: CarOptions | undefined;
+
   selectedModel$: Observable<CarModel | undefined>;
   selectedModel: CarModel | undefined;
   selectedConfig$: Observable<CarConfig | undefined>;
@@ -45,9 +45,7 @@ export class ConfigOptionsComponent implements OnInit{
     this.selectedConfig$.subscribe(config => this.selectedConfig = config);
     this.towHitch$.subscribe(th => this.towHitch = th);
     this.yokeSteeringWheel$.subscribe(yoke => this.yokeSteeringWheel = yoke);
-    this.apiClientService.getOptions(this.selectedModel?.code!).subscribe(data => {
-      this.options = data;
-    });
+
   }
 
   onConfigChange(config: CarConfig): void {

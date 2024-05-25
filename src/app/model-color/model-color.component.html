@@ -3,7 +3,7 @@
     <label for="modelSelect">Model:</label>
     <select id="modelSelect" [ngModel]="selectedModel" (ngModelChange)="onModelChange($event)">
       <option [ngValue]="undefined" disabled>Choose...</option>
-      <option *ngFor="let model of models" [ngValue]="model" [selected]="selectedModel == model">{{ model.description }}</option>
+      <option *ngFor="let model of state.models" [ngValue]="model">{{ model.description }}</option>
     </select>
   </div>
   <div class="selector" *ngIf="selectedModel$ | async as selectedModel">
