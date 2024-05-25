@@ -8,8 +8,8 @@ import {CarModel, CarOptions} from "./shared/interfaces";
 })
 export class ApiClientService {
 
-  private apiUrlModels = '/api/models';
-  private apiUrlOptions = '/api/options';
+  private apiUrlModels = '/models';
+  private apiUrlOptions = '/options';
 
   constructor(private http: HttpClient) { }
 

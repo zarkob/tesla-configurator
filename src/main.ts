@@ -9,7 +9,7 @@ bootstrapApplication(AppComponent, appConfig)
 
 
 const handlers = [
-  http.get('/api/options/:id', ({ params }) => {
+  http.get('/options/:id', ({ params }) => {
 
     const options = {
       "S": {
@@ -59,7 +59,7 @@ const handlers = [
     // @ts-ignore
     return HttpResponse.json(options[params.id.toUpperCase()]);
   }),
-  http.get('/api/models', ({ request, params, cookies }) => {
+  http.get('/models', ({ request, params, cookies }) => {
     return HttpResponse.json([
       { code: "S",
         description: "Model S",
