@@ -7,35 +7,36 @@ import {ApiClientService} from "../api-client.service";
   providedIn: 'root'
 })
 export class State {
-  canGoToStep3: boolean = false;
-  models: CarModel[] = [];
-  options: CarOptions | undefined;
-  private step2Accessible = new BehaviorSubject<boolean>(false);
-  private step3Accessible = new BehaviorSubject<boolean>(false);
+  private modelsSubject = new BehaviorSubject<CarModel[]>([]);
+  private optionsSubject = new BehaviorSubject<CarOptions | undefined>(undefined);
+  private step2AccessibleSubject = new BehaviorSubject<boolean>(false);
+  private step3AccessibleSubject = new BehaviorSubject<boolean>(false);
   private selectedModelSubject = new BehaviorSubject<CarModel | undefined>(undefined);
   private selectedColorSubject = new BehaviorSubject<CarColor | undefined>(undefined);
   private selectedConfigSubject = new BehaviorSubject<CarConfig | undefined>(undefined);
   private towHitchSubject = new BehaviorSubject<boolean>(false);
   private yokeSteeringWheelSubject = new BehaviorSubject<boolean>(false);
 
+  models$ = this.modelsSubject.asObservable();
+  options$ = this.optionsSubject.asObservable();
   selectedModel$ = this.selectedModelSubject.asObservable();
   selectedColor$ = this.selectedColorSubject.asObservable();
   selectedConfig$ = this.selectedConfigSubject.asObservable();
   towHitch$ = this.towHitchSubject.asObservable();
   yokeSteeringWheel$ = this.yokeSteeringWheelSubject.asObservable();
-  step2Accessible$ = this.step2Accessible.asObservable();
-  step3Accessible$ = this.step3Accessible.asObservable();
+  step2Accessible$ = this.step2AccessibleSubject.asObservable();
+  step3Accessible$ = this.step3AccessibleSubject.asObservable();
 
   constructor(private readonly apiClientService: ApiClientService) {
     this.apiClientService.getModels().subscribe(data => {
-      this.models = data;
+      this.modelsSubject.next(data);
     });
   }
 
   setSelectedModel(model: CarModel) {
     this.selectedModelSubject.next(model);
     this.apiClientService.getOptions(model.code!).subscribe(data => {
-      this.options = data;
+      this.optionsSubject.next(data);
     });
   }
 
@@ -56,13 +57,11 @@ export class State {
   }
 
   setStep2Accessible(isAccessible: boolean) {
-    this.step2Accessible.next(isAccessible);
-    // this.step2Accessible.next(this.selectedModelSubject.value !== undefined && this.selectedColorSubject.value !== undefined);
+    this.step2AccessibleSubject.next(isAccessible);
   }
 
   setStep3Accessible(isAccessible: boolean) {
-    this.step3Accessible.next(isAccessible);
-    // this.step3Accessible.next(this.selectedConfigSubject.value !== undefined);
+    this.step3AccessibleSubject.next(isAccessible);
   }
 
   getCurrentImageUrl() {

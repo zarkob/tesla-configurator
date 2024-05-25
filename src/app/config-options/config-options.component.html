@@ -6,7 +6,7 @@
     <label for="configSelect">Config:</label>
     <select id="configSelect" [(ngModel)]="selectedConfig" (ngModelChange)="onConfigChange($event)">
       <option [ngValue]="undefined" disabled>Choose...</option>
-      <option *ngFor="let config of state.options?.configs" [ngValue]="config">{{ config.description }}</option>
+      <option *ngFor="let config of (state.options$ | async)?.configs" [ngValue]="config">{{ config.description }}</option>
     </select>
   </div>
   <div class="config-info">
@@ -25,9 +25,6 @@
       Yoke steering wheel?
     </label>
   </div>
-  <!--  <div *ngIf="selectedConfig">-->
-  <!--    <p>Range: {{ selectedConfig.range }} miles - Max speed: {{ selectedConfig.speed }} mph - Cost: ${{ selectedConfig.price }}</p>-->
-  <!--  </div>-->
 </div>
 <app-car-image></app-car-image>
 

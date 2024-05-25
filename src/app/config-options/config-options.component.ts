@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {CarConfig, CarModel, CarOptions} from "../shared/interfaces";
 import {FormsModule} from "@angular/forms";
-import {NgForOf, NgIf} from "@angular/common";
+import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {StepsComponent} from "../steps/steps.component";
 import {State} from "../shared/state";
 import {Observable} from "rxjs";
@@ -16,7 +16,8 @@ import {ApiClientService} from "../api-client.service";
     NgIf,
     NgForOf,
     StepsComponent,
-    CarImageComponent
+    CarImageComponent,
+    AsyncPipe
   ],
   templateUrl: './config-options.component.html',
   styleUrl: './config-options.component.scss'
