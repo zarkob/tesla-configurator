@@ -1,9 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CarColor, CarModel} from "../shared/interfaces";
 import {FormsModule} from "@angular/forms";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {Observable} from "rxjs";
-import {ApiClientService} from "../api-client.service";
 import {State} from "../shared/state";
 
 @Component({

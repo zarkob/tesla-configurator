@@ -27,12 +27,13 @@ import {CarImageComponent} from "../car-image/car-image.component";
   styleUrl: './car-configurator.component.scss'
 })
 export class CarConfiguratorComponent implements OnInit{
+
   models: CarModel[] = [];
 
   constructor(private apiClientService: ApiClientService, protected state: State) {}
 
   ngOnInit(): void {
-    this.apiClientService.getModels().subscribe(data => {
+    this.state.models$.subscribe(data => {
       this.models = data;
     });
   }

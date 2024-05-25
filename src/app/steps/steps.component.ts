@@ -1,5 +1,5 @@
-import {booleanAttribute, Component, Input} from '@angular/core';
-import {Router, RouterLink} from "@angular/router";
+import {Component} from '@angular/core';
+import {RouterLink} from "@angular/router";
 import {State} from "../shared/state";
 import {AsyncPipe} from "@angular/common";
 
@@ -15,6 +15,6 @@ import {AsyncPipe} from "@angular/common";
 })
 export class StepsComponent {
 
-  constructor(private router: Router, protected state: State) { }
+  constructor(protected state: State) { }
 
 }

@@ -1,12 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {CarConfig, CarModel, CarOptions} from "../shared/interfaces";
+import {Component, OnInit} from '@angular/core';
+import {CarConfig, CarModel} from "../shared/interfaces";
 import {FormsModule} from "@angular/forms";
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
 import {StepsComponent} from "../steps/steps.component";
 import {State} from "../shared/state";
-import {Observable} from "rxjs";
 import {CarImageComponent} from "../car-image/car-image.component";
-import {ApiClientService} from "../api-client.service";
 
 @Component({
   selector: 'app-config-options',

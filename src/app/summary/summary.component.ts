@@ -21,11 +21,11 @@ import {CurrencyPipe, NgIf} from "@angular/common";
 export class SummaryComponent implements OnInit {
   towPrice: number = 1000;
   yokePrice: number = 1000;
-  selectedModel?: CarModel;
-  selectedColor?: CarColor;
-  selectedConfig?: CarConfig;
-  towHitch?: boolean;
-  yokeSteeringWheel?: boolean;
+  selectedModel: CarModel | undefined;
+  selectedColor: CarColor | undefined;
+  selectedConfig: CarConfig | undefined;
+  towHitch: boolean | undefined;
+  yokeSteeringWheel: boolean | undefined;
   totalCost: number = 0;
 
   constructor(private state: State) {}

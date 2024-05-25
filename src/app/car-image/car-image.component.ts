@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { State } from '../shared/state';
-import { Observable } from 'rxjs';
-import { startWith } from 'rxjs/operators';
+import {Component} from '@angular/core';
+import {State} from '../shared/state';
 import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
 
 @Component({
