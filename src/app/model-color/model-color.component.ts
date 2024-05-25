@@ -42,6 +42,7 @@ export class ModelColorComponent implements OnInit {
     this.selectedModel = model;
     this.state.setSelectedModel(model);
     this.state.setSelectedColor(model.colors[0]);
+    this.state.setSelectedConfig(undefined);
     this.state.setStep2Accessible(true);
     this.state.setStep3Accessible(false);
   }

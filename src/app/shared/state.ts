@@ -44,7 +44,7 @@ export class State {
     this.selectedColorSubject.next(color);
   }
 
-  setSelectedConfig(config: CarConfig) {
+  setSelectedConfig(config: CarConfig | undefined) {
     this.selectedConfigSubject.next(config);
   }
 

@@ -24,29 +24,18 @@ import {ApiClientService} from "../api-client.service";
 })
 export class ConfigOptionsComponent implements OnInit{
 
-  selectedModel$: Observable<CarModel | undefined>;
   selectedModel: CarModel | undefined;
-  selectedConfig$: Observable<CarConfig | undefined>;
   selectedConfig: CarConfig | undefined;
-  towHitch$: Observable<boolean>;
   towHitch: boolean = false;
-  yokeSteeringWheel$: Observable<boolean>;
   yokeSteeringWheel: boolean = false;
 
-  constructor(private apiClientService: ApiClientService, protected state: State) {
-    this.selectedModel$ = this.state.selectedModel$;
-    this.selectedConfig$ = this.state.selectedConfig$;
-    this.towHitch$ = this.state.towHitch$;
-    this.yokeSteeringWheel$ = this.state.yokeSteeringWheel$;
-    // this.imageUrl$ = this.state.getCurrentImageUrl();
-  }
+  constructor(protected state: State) {}
 
   ngOnInit(): void {
-    this.selectedModel$.subscribe(model => this.selectedModel = model);
-    this.selectedConfig$.subscribe(config => this.selectedConfig = config);
-    this.towHitch$.subscribe(th => this.towHitch = th);
-    this.yokeSteeringWheel$.subscribe(yoke => this.yokeSteeringWheel = yoke);
-
+    this.state.selectedModel$.subscribe(model => this.selectedModel = model);
+    this.state.selectedConfig$.subscribe(config => this.selectedConfig = config);
+    this.state.towHitch$.subscribe(th => this.towHitch = th);
+    this.state.yokeSteeringWheel$.subscribe(yoke => this.yokeSteeringWheel = yoke);
   }
 
   onConfigChange(config: CarConfig): void {
