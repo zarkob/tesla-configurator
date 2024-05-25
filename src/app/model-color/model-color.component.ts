@@ -35,6 +35,8 @@ export class ModelColorComponent implements OnInit {
     this.state.setSelectedConfig(undefined);
     this.state.setStep2Accessible(true);
     this.state.setStep3Accessible(false);
+    this.state.setTowHitch(false);
+    this.state.setYokeSteeringWheel(false);
   }
 
   onColorChange(color: CarColor): void {

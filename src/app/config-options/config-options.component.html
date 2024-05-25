@@ -11,17 +11,17 @@
   </div>
   <div class="config-info">
     <span *ngIf="selectedConfig !== undefined">Range: {{ selectedConfig?.range }}
-      miles - Max speed: {{ selectedConfig?.speed }} mph</span>
+      miles - Max speed: {{ selectedConfig?.speed }} mph - Cost: {{selectedConfig?.price | currency}}</span>
   </div>
-  <div>
+  <div *ngIf="options?.towHitch">
     <label>
-      <input type="checkbox" [(ngModel)]="towHitch" (ngModelChange)="onTowHitchChange($event)">
+      <input id="includeTow" type="checkbox" [(ngModel)]="towHitch" (ngModelChange)="onTowHitchChange($event)">
       Tow hitch?
     </label>
   </div>
-  <div>
+  <div *ngIf="options?.yoke">
     <label>
-      <input type="checkbox" [(ngModel)]="yokeSteeringWheel" (ngModelChange)="onYokeSteeringWheelChange($event)">
+      <input id="includeYoke" type="checkbox" [(ngModel)]="yokeSteeringWheel" (ngModelChange)="onYokeSteeringWheelChange($event)">
       Yoke steering wheel?
     </label>
   </div>
