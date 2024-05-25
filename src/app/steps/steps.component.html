@@ -1,5 +1,5 @@
 <div class="steps">
   <button id="step1" routerLink="/step1">Step 1</button>
-  <button id="step2" [disabled]="!canProceed" routerLink="/step2">Step 2</button>
-  <button id="step3" [disabled]="!canProceed" routerLink="/step3">Step 3</button>
+  <button id="step2" [disabled]="!(state.step2Accessible$ | async)" routerLink="/step2">Step 2</button>
+  <button id="step3" [disabled]="!(state.step3Accessible$ | async)" routerLink="/step3">Step 3</button>
 </div>

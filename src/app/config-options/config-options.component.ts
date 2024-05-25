@@ -49,7 +49,8 @@ export class ConfigOptionsComponent implements OnInit{
   }
 
   onConfigChange(config: CarConfig): void {
-    this.state.setSelectedConfig(config)
+    this.state.setSelectedConfig(config);
+    this.state.setStep3Accessible(true)
   }
 
   onTowHitchChange(towHitch: boolean): void {

@@ -1,0 +1,38 @@
+<app-steps></app-steps>
+
+<div>
+  <h2>Step 3: Summary</h2>
+  <div *ngIf="selectedModel">
+    <div class="summary-item">
+      <h3>Your Tesla {{ selectedModel.description }}</h3>
+    </div>
+    <div class="summary-item">
+      <span><strong>{{ selectedConfig?.description }}</strong></span>
+      <span class="price">{{ selectedConfig?.price | currency }}</span>
+    </div>
+    <div class="summary-info-item">
+      <span>Range: {{ selectedConfig?.range }} miles - Max speed: {{ selectedConfig?.speed }} mph</span>
+    </div>
+    <div class="summary-item">
+      <span><strong>{{ selectedColor?.description }} Color</strong></span>
+      <span class="price">{{ selectedColor?.price | currency}}</span>
+    </div>
+    <div class="summary-item" *ngIf="towHitch">
+      <span><strong>Tow Hitch Package</strong></span>
+      <span class="price">{{towPrice | currency}}</span>
+    </div>
+    <div class="summary-item" *ngIf="yokeSteeringWheel">
+      <span><strong>Yoke Steering Wheel</strong></span>
+      <span class="price">{{yokePrice | currency}}</span>
+    </div>
+    <hr>
+    <div class="summary-item">
+      <span><strong>TOTAL COST</strong></span>
+      <span class="price">{{ totalCost.toFixed(2) | currency }}</span>
+    </div>
+  </div>
+  <hr>
+</div>
+
+<app-car-image></app-car-image>
+

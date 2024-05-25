@@ -7,8 +7,11 @@ import {ApiClientService} from "../api-client.service";
   providedIn: 'root'
 })
 export class State {
+  canGoToStep3: boolean = false;
   models: CarModel[] = [];
   options: CarOptions | undefined;
+  private step2Accessible = new BehaviorSubject<boolean>(false);
+  private step3Accessible = new BehaviorSubject<boolean>(false);
   private selectedModelSubject = new BehaviorSubject<CarModel | undefined>(undefined);
   private selectedColorSubject = new BehaviorSubject<CarColor | undefined>(undefined);
   private selectedConfigSubject = new BehaviorSubject<CarConfig | undefined>(undefined);
@@ -20,6 +23,8 @@ export class State {
   selectedConfig$ = this.selectedConfigSubject.asObservable();
   towHitch$ = this.towHitchSubject.asObservable();
   yokeSteeringWheel$ = this.yokeSteeringWheelSubject.asObservable();
+  step2Accessible$ = this.step2Accessible.asObservable();
+  step3Accessible$ = this.step3Accessible.asObservable();
 
   constructor(private readonly apiClientService: ApiClientService) {
     this.apiClientService.getModels().subscribe(data => {
@@ -50,8 +55,14 @@ export class State {
     this.yokeSteeringWheelSubject.next(yokeSteeringWheel);
   }
 
-  canProceed() {
-    return this.selectedModelSubject.value !== undefined && this.selectedColorSubject.value !== undefined;
+  setStep2Accessible(isAccessible: boolean) {
+    this.step2Accessible.next(isAccessible);
+    // this.step2Accessible.next(this.selectedModelSubject.value !== undefined && this.selectedColorSubject.value !== undefined);
+  }
+
+  setStep3Accessible(isAccessible: boolean) {
+    this.step3Accessible.next(isAccessible);
+    // this.step3Accessible.next(this.selectedConfigSubject.value !== undefined);
   }
 
   getCurrentImageUrl() {
@@ -67,20 +78,4 @@ export class State {
       startWith('') // Ensure the observable starts with an empty string
     );
   }
-  // getCurrentImageUrl() {
-  //   return combineLatest([this.selectedModel$, this.selectedColor$]).pipe(
-  //     map(([model, color]) => {
-  //       if (!model || !color) {
-  //         return '';
-  //       }
-  //       const modelCode = model.code.toUpperCase();
-  //       const colorCode = color.code.toLowerCase();
-  //       console.log('MODEL:', modelCode);
-  //       console.log('COLOR:', colorCode);
-  //       console.log('https://interstate21.com/tesla-app/images/', modelCode, '/', colorCode, '.jpg');
-  //       return `https://interstate21.com/tesla-app/images/${modelCode}/${colorCode}.jpg`;
-  //     }),
-  //     startWith('')
-  //   );
-  // }
 }

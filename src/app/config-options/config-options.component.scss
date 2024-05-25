@@ -1,7 +1,9 @@
 .selector {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  max-width: 100%;
+  width: 300px;
 
   label {
     margin-right: 10px;
@@ -10,4 +12,9 @@
   select {
     flex: 1;
   }
+}
+
+.config-info {
+  padding-left: 15px;
+  margin-bottom: 20px;
 }

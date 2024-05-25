@@ -1,4 +1,4 @@
-<app-steps [canProceed]="true"></app-steps>
+<app-steps></app-steps>
 
 <div>
   <h2>Step 2: Select your config and options</h2>
@@ -8,6 +8,10 @@
       <option [ngValue]="undefined" disabled>Choose...</option>
       <option *ngFor="let config of state.options?.configs" [ngValue]="config">{{ config.description }}</option>
     </select>
+  </div>
+  <div class="config-info">
+    <span *ngIf="selectedConfig !== undefined">Range: {{ selectedConfig?.range }}
+      miles - Max speed: {{ selectedConfig?.speed }} mph</span>
   </div>
   <div>
     <label>
@@ -21,9 +25,9 @@
       Yoke steering wheel?
     </label>
   </div>
-<!--  <div *ngIf="selectedConfig">-->
-<!--    <p>Range: {{ selectedConfig.range }} miles - Max speed: {{ selectedConfig.speed }} mph - Cost: ${{ selectedConfig.price }}</p>-->
-<!--  </div>-->
+  <!--  <div *ngIf="selectedConfig">-->
+  <!--    <p>Range: {{ selectedConfig.range }} miles - Max speed: {{ selectedConfig.speed }} mph - Cost: ${{ selectedConfig.price }}</p>-->
+  <!--  </div>-->
 </div>
 <app-car-image></app-car-image>
 
