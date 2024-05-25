@@ -10,8 +10,8 @@
     </select>
   </div>
   <div class="config-info">
-    <span *ngIf="selectedConfig !== undefined">Range: {{ selectedConfig?.range }}
-      miles - Max speed: {{ selectedConfig?.speed }} mph - Cost: {{selectedConfig?.price | currency}}</span>
+    <span *ngIf="selectedConfig !== undefined">Range: {{ selectedConfig.range }}
+      miles - Max speed: {{ selectedConfig.speed }} mph - Cost: {{selectedConfig.price | currency}}</span>
   </div>
   <div *ngIf="options?.towHitch">
     <label>
