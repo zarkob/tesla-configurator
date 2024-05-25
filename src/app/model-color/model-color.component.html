@@ -6,9 +6,9 @@
       <option *ngFor="let model of (state.models$ | async)" [ngValue]="model">{{ model.description }}</option>
     </select>
   </div>
-  <div class="selector" *ngIf="selectedModel$ | async as selectedModel">
+  <div class="selector" *ngIf="selectedModel">
     <label for="colorSelect">Color:</label>
-    <select id="colorSelect" [ngModel]="selectedColor$ | async" (ngModelChange)="onColorChange($event)">
+    <select id="colorSelect" [ngModel]="selectedColor" (ngModelChange)="onColorChange($event)">
       <option *ngFor="let color of selectedModel.colors" [ngValue]="color">{{ color.description }}</option>
     </select>
   </div>

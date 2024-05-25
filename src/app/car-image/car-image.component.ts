@@ -16,9 +16,9 @@ import {AsyncPipe, NgIf, NgOptimizedImage} from "@angular/common";
   styleUrl: './car-image.component.scss'
 })
 export class CarImageComponent {
-  imageUrl$: Observable<string>;
+  imageUrl: string | undefined;
 
   constructor(protected state: State) {
-    this.imageUrl$ = this.state.getCurrentImageUrl().pipe(startWith(''));
+    this.state.imgUrl$.subscribe(url => this.imageUrl = url);
   }
 }

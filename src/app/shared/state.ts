@@ -26,6 +26,7 @@ export class State {
   yokeSteeringWheel$ = this.yokeSteeringWheelSubject.asObservable();
   step2Accessible$ = this.step2AccessibleSubject.asObservable();
   step3Accessible$ = this.step3AccessibleSubject.asObservable();
+  imgUrl$ = this.getCurrentImageUrl();
 
   constructor(private readonly apiClientService: ApiClientService) {
     this.apiClientService.getModels().subscribe(data => {
@@ -64,7 +65,7 @@ export class State {
     this.step3AccessibleSubject.next(isAccessible);
   }
 
-  getCurrentImageUrl() {
+  private getCurrentImageUrl() {
     return combineLatest([this.selectedModel$, this.selectedColor$]).pipe(
       map(([model, color]) => {
         if (!model || !color) {

@@ -20,22 +20,14 @@ import {State} from "../shared/state";
 })
 export class ModelColorComponent implements OnInit {
 
-  selectedModel$: Observable<CarModel | undefined>;
-  selectedColor$: Observable<CarColor | undefined>;
   selectedModel: CarModel | undefined;
   selectedColor: CarColor | undefined;
 
-  constructor(private apiClientService: ApiClientService, protected state: State) {
-
-    this.selectedModel$ = this.state.selectedModel$;
-    this.selectedColor$ = this.state.selectedColor$;
-  }
+  constructor(protected state: State) {}
 
   ngOnInit(): void {
-    this.selectedModel$.subscribe(model => this.selectedModel = model);
-    console.log('SELECTED MODEL IS: ', this.selectedModel);
-    this.selectedColor$.subscribe(color => this.selectedColor = color);
-    console.log('SELECTED COLOR IS: ', this.selectedColor);
+    this.state.selectedModel$.subscribe(model => this.selectedModel = model);
+    this.state.selectedColor$.subscribe(color => this.selectedColor = color);
   }
 
   onModelChange(model: CarModel): void {

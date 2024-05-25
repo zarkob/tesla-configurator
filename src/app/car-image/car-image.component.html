@@ -1,4 +1,4 @@
 <div *ngIf="(state.selectedModel$ | async) && (state.selectedColor$ | async)">
-  <img [src]="imageUrl$ | async" width="1016" height="595" alt="Selected Car" priority/>
+  <img [ngSrc]="imageUrl!" width="1016" height="595" alt="Selected Car" priority/>
 </div>
 
